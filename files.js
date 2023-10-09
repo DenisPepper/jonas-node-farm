@@ -1,4 +1,5 @@
 import * as fs from 'node:fs';
+import { __dirname } from './util.js';
 
 /* синхронный способ работы с файловой сиситемой
 const file = fs.readFileSync('./txt/input.txt', 'utf-8');
@@ -17,7 +18,7 @@ const file = fs.readFile('./txt/input.txt', 'utf-8', (error, data) => {
 });
 */
 export const productsJSON = fs.readFileSync(
-  `${__dirname}/templates/data.json`,
+  `${__dirname}/dev-data/data.json`,
   'utf8'
 );
 
