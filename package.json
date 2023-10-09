@@ -1,3 +1,15 @@
 {
-  "type": "module"
+  "type": "module",
+  "name": "jonas-node-farm",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "description": "Учебный fullstack проект «Ферма»",
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all",
+    "not < 0.25%"
+  ]
 }
