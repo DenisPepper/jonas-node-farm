@@ -29,14 +29,14 @@ const server = http.createServer((req, res) => {
 
   //Home page
   if (route === '/' || route === '/catalog') {
-    const cardsHtml = products.map((product) =>
-      replaceTemplate(tmpCard, product)
-    );
-    console.log(cardsHtml);
+    const cardsHtml = products
+      .map((product) => replaceTemplate(tmpCard, product))
+      .join('');
+
     res.writeHead(200, {
       'Content-type': 'text/html',
     });
-    res.end(tmpCards);
+    res.end(tmpCards.replace(/{%cards%}/g, cardsHtml));
 
     //Product page
   } else if (route === '/product') {
