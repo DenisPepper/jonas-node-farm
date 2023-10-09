@@ -12,8 +12,11 @@ const server = http.createServer((req, res) => {
   } else if (route === '/product') {
     res.end('Product page');
   } else {
-    res.writeHead(404);
-    res.end('Page not found');
+    res.writeHead(404, {
+      'Content-type': 'text/html',
+      'My-own-header': 'some-type',
+    });
+    res.end('<h1>Page not found</h1>');
   }
 });
 
