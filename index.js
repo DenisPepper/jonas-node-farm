@@ -1,7 +1,5 @@
-import * as fs from 'node:fs';
 import * as http from 'node:http';
 import * as url from 'node:url';
-import { __dirname } from './util.js';
 import {
   productsJSON,
   products,
@@ -13,20 +11,43 @@ import {
 const IP = '127.0.0.1';
 const PORT = 8000;
 
+const replaceTemplate = (tmpCard, product) => {
+  return tmpCard
+    .replace(/{%productName%}/g, product.productName)
+    .replace(/{%image%}/g, product.image)
+    .replace(/{%quantity%}/g, product.quantity)
+    .replace(/{%from%}/g, product.from)
+    .replace(/{%nutrients%}/g, product.nutrients)
+    .replace(/{%organic%}/g, (str) => (product.organic ? '' : 'not-organic'))
+    .replace(/{%description%}/g, product.description)
+    .replace(/{%price%}/g, product.price)
+    .replace(/{%id%}/g, product.id);
+};
+
 const server = http.createServer((req, res) => {
   const route = req.url;
 
   //Home page
   if (route === '/' || route === '/catalog') {
-    res.end('Catalog page');
+    const cardsHtml = products.map((product) =>
+      replaceTemplate(tmpCard, product)
+    );
+    console.log(cardsHtml);
+    res.writeHead(200, {
+      'Content-type': 'text/html',
+    });
+    res.end(tmpCards);
 
     //Product page
   } else if (route === '/product') {
-    res.end('Product page');
+    res.writeHead(200, {
+      'Content-type': 'text/html',
+    });
+    res.end(tmpProduct);
 
     //API
   } else if (route === '/api') {
-    res.writeHead(404, {
+    res.writeHead(200, {
       'Content-type': 'application/json',
     });
     res.end(productsJSON);
