@@ -17,24 +17,12 @@ const file = fs.readFile('./txt/input.txt', 'utf-8', (error, data) => {
   );
 });
 */
-export const productsJSON = fs.readFileSync(
-  `${__dirname}/dev-data/data.json`,
-  'utf8'
-);
+export const productsJSON = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf8');
 
 export const products = JSON.parse(productsJSON);
 
-export const tmpCard = fs.readFileSync(
-  `${__dirname}/templates/template-card.html`,
-  'utf8'
-);
+export const tmpCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf8');
 
-export const tmpCards = fs.readFileSync(
-  `${__dirname}/templates/template-cards.html`,
-  'utf8'
-);
+export const tmpCards = fs.readFileSync(`${__dirname}/templates/template-cards.html`, 'utf8');
 
-export const tmpProduct = fs.readFileSync(
-  `${__dirname}/templates/template-product.html`,
-  'utf8'
-);
+export const tmpProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`, 'utf8');

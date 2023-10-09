@@ -1,18 +1,10 @@
 import * as http from 'node:http';
 import * as url from 'node:url';
-import {
-  productsJSON,
-  products,
-  tmpCard,
-  tmpCards,
-  tmpProduct,
-} from './files.js';
+import { productsJSON, products, tmpCard, tmpCards, tmpProduct } from './files.js';
 import { replaceTemplate } from './util.js';
 import slugify from 'slugify';
 
-const slugs = products.map((item) =>
-  slugify(item.productName, { lower: true })
-);
+const slugs = products.map((item) => slugify(item.productName, { lower: true }));
 
 const IP = '127.0.0.1';
 const PORT = 8000;
@@ -22,9 +14,7 @@ const server = http.createServer((req, res) => {
 
   //Home page
   if (route === '/' || route === '/catalog') {
-    const cardsHtml = products
-      .map((product) => replaceTemplate(tmpCard, product))
-      .join('');
+    const cardsHtml = products.map((product) => replaceTemplate(tmpCard, product)).join('');
 
     res.writeHead(200, {
       'Content-type': 'text/html',
@@ -57,6 +47,4 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(PORT, IP, () =>
-  console.log(`Server start listening requests on ${IP}:${PORT}`)
-);
+server.listen(PORT, IP, () => console.log(`Server start listening requests on ${IP}:${PORT}`));
