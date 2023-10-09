@@ -11,5 +11,14 @@
     "not ie <= 11",
     "not op_mini all",
     "not < 0.25%"
-  ]
+  ],
+  "scripts": {
+    "start": "nodemon index.js" 
+  },
+  "dependencies": {
+    "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
 }

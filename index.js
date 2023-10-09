@@ -8,6 +8,11 @@ import {
   tmpProduct,
 } from './files.js';
 import { replaceTemplate } from './util.js';
+import slugify from 'slugify';
+
+const slugs = products.map((item) =>
+  slugify(item.productName, { lower: true })
+);
 
 const IP = '127.0.0.1';
 const PORT = 8000;
