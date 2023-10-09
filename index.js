@@ -25,7 +25,7 @@ const replaceTemplate = (tmpCard, product) => {
 };
 
 const server = http.createServer((req, res) => {
-  const route = req.url;
+  const { pathname: route, query } = url.parse(req.url, true);
 
   //Home page
   if (route === '/' || route === '/catalog') {
@@ -40,10 +40,12 @@ const server = http.createServer((req, res) => {
 
     //Product page
   } else if (route === '/product') {
+    const product = products.find((item) => item.id === Number(query.id));
+    console.log(product);
     res.writeHead(200, {
       'Content-type': 'text/html',
     });
-    res.end(tmpProduct);
+    res.end(replaceTemplate(tmpProduct, product));
 
     //API
   } else if (route === '/api') {
