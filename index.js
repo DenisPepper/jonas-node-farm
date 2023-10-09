@@ -41,7 +41,7 @@ const server = http.createServer((req, res) => {
     //Product page
   } else if (route === '/product') {
     const product = products.find((item) => item.id === Number(query.id));
-    console.log(product);
+
     res.writeHead(200, {
       'Content-type': 'text/html',
     });
